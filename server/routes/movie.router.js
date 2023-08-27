@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
   console.log("INSIDE get /id", id)
   const queryParams = [id]
   const query = `
-  SELECT 
+    SELECT 
       movies.title, 
       movies.poster, 
       movies.description, 
