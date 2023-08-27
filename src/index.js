@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -18,6 +18,7 @@ import '@fontsource/roboto/700.css';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeLatest('FETCH_MOVIE_DETAILS', fetchMovieDetailsSaga);
 }
 
 function* fetchAllMovies() {
@@ -31,6 +32,16 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
         
+}
+
+function* fetchMovieDetailsSaga(action) {
+    try {
+        console.log("ACTION `PAYLOAD", action.payload)
+        const response = yield put(axios.get, `/api/movies/${action.payload}`);
+        yield put({ type: 'MOVIE_DETAILS_LOADED', payload: response.data });
+    } catch (error) {
+        yield console.log("ERROR on FetchMovieDetailsSaga", error)
+    }
 }
 
 // Create sagaMiddleware
