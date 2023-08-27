@@ -20,7 +20,11 @@ console.log("MOVIE DETAILS", movieDetails)
 
 return (
     <div>
-  <h1>MOVIE DETAILS</h1>
+        <header>
+        <h1>MOVIE DETAILS</h1>
+        <a href="/">Back to Movie List</a>
+        </header>
+  
   {movieDetails.map((movie, index) => (
     <div key={index}>
       {index === 0 && (
