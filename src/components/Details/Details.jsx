@@ -23,9 +23,13 @@ return (
   <h1>MOVIE DETAILS</h1>
   {movieDetails.map((movie, index) => (
     <div key={index}>
-      <h1>{movie.title}</h1>
-      <img src={movie.poster} alt={movie.title} />
-      <p>{movie.description}</p>
+      {index === 0 && (
+        <>
+          <h1>{movie.title}</h1>
+          <img src={movie.poster} alt={movie.title} />
+          <p>{movie.description}</p>
+        </>
+      )}
       <span>{movie.genre}</span>
     </div>
   ))}
