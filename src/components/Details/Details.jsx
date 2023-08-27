@@ -12,6 +12,7 @@ let { id } = useParams();
 const movieDetails = useSelector(state => state.movieDetails);
 
 useEffect(() => {
+    console.log("ID for dispatch", id)
     dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: id });
 }, [id, dispatch]);
 
@@ -19,15 +20,16 @@ console.log("MOVIE DETAILS", movieDetails)
 
 return (
     <div>
-        <h1>DETAILS</h1>
-        {/* <h1>{movieDetails.title}</h1>
-        <img src={movieDetails.poster} alt={movieDetails.title}/>
-        <p>{movieDetails.description}</p>
-        {/* Display genres */}
-        {/* {movieDetails.genres.map(genre => (
-            <span key={genre}>{genre}</span>
-        ))}  */}
+  <h1>MOVIE DETAILS</h1>
+  {movieDetails.map((movie, index) => (
+    <div key={index}>
+      <h1>{movie.title}</h1>
+      <img src={movie.poster} alt={movie.title} />
+      <p>{movie.description}</p>
+      <span>{movie.genre}</span>
     </div>
+  ))}
+</div>
 );
 
         }

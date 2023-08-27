@@ -18,7 +18,7 @@ function MovieList() {
         console.log("movied.id", id)
         history.push(`/details/${id}`)
     }
-    
+
     return (
         <main>
             <h1>MovieList</h1>
